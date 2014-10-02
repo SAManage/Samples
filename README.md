@@ -19,10 +19,16 @@ Configuration
 	To use the tool, follow this steps:
 
 1) Get nmap here
+
 2) Get the code the tool here
+
 3) Get the code for the Samanage API here
+
 4) Add a new custom field called "MacAddress" to your Other Asset object via the setup section in Samanage. The tool will populate this field with the MacAddress of the collected devices.
+
 5) Create additional Asset Types in your Other Asset module. If the appropriate asset type does not exist when the tool runs, an error message will be displayed and that asset will not get into your inventory. Typical types that you will want to add are: “general purpose”, “Unknown”, “VoIP Phone”. 
+
 6) Edit the sample code to provide your subnet prefix - for example 192.168.*.*. that means that the entire subnet of 192.168 will be scanned. You can provide multiple subnet ranges by separating them via commas. 
+
 7) Edit the Samanage API gem to provide your user/password that is used for API access. This user should have the permission to create new assets in Other Assets.
 
