@@ -10,8 +10,8 @@
 require 'rest_client'
 require 'xmlsimple'
 class SamanageAPI
-	@email = "chris.walls+chriswallssamanage@samanage.com"
-	@password = "Test1234"
+	@email = ""
+	@password = ""
 	def self.get(path)
 		response = RestClient::Request.new(
 			:method => "get",
