@@ -4,9 +4,12 @@ require 'mac_vendor'
 require_relative 'SamanageAPI.rb'
 ####################################################
 # This script requires 'nmap' to be installed
-# I will need to test this again on a new machine to see if it needs to be included in path variables
-
-
+# 
+# You can install the required gems with the following commands:
+#  'gem install ruby-nmap'
+#  'gem install mac_vendor'
+#  'gem install xml-simple'
+#  'gem install rest_client'
 
 
 
