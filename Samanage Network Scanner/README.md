@@ -1,13 +1,16 @@
-Network Scanning Interface for Samanage
+#Network Scanning Interface for Samanage
 
-<<<<<<< HEAD
-Use Case
+
+###Use Case
+
 	Enhance the Samanage IT asset management solution to collect inventory of networked assets across your network, and manage these assets through the Samanage application. 
 
-Using NMAP for network scanning
+###Using NMAP for network scanning
+
 	The following solution is using the popular open source NMAP tool to scan your network and detect any networked device, and collect their information. NMAP is a very popular and robust network scanning open source solution that is actively maintained by the community. NMAP runs on Windows or Unix.
 
-How does it work?
+###How does it work?
+
 	The code example below is a ruby-gem that:
 Invokes the NMAP tool to collect the network inventory 
 Parses the output from the NMAP tool 
@@ -16,7 +19,8 @@ Create a report of all assets collected that were not imported automatically alo
 
 It is recommend to run the code below periodically to detect new devices on your network and load them into Samanage. 
 
-Configuration
+###Configuration
+
 	To use the tool, follow this steps:
 
 1) Get nmap here
@@ -28,6 +32,7 @@ Configuration
 7) Edit the Samanage API gem to provide your user/password that is used for API access. This user should have the permission to create new assets in Other Assets.
 
 =======
+
 Use Case Enhance the Samanage IT asset management solution to collect inventory of networked assets across your network, and manage these assets through the Samanage application.
 
 Using NMAP for network scanning The following solution is using the popular open source NMAP tool to scan your network and detect any networked device, and collect their information. NMAP is a very popular and robust network scanning open source solution that is actively maintained by the community. NMAP runs on Windows or Unix.
@@ -53,5 +58,3 @@ Configuration To use the tool, follow this steps:
 7) Edit the Samanage API gem to provide your user/password that is used for API access. This user should have the permission to create new assets in Other Assets.
 
 You can run the script by typing "ruby samanage-network-scanner.rb"
-Enjoy :)
->>>>>>> fe2b7b3d3a1a88d95b4dd1309ff62a6405077a72
