@@ -1,8 +1,16 @@
-This folder contains different code examples for use with Samanage.
+# **Samanage API Examples**
 
 
-Samanage-Network-Scanner:
-	This script scans discoverable network devices using Nmap and imports them into Samanage.
+####Using SamanageAPI.rb
+* [SamanageAPI.rb Introduction](/SamanageAPI)
 
 
-Find out more about Samanage @ https://samanage.com
+####Scripts Using SamanageAPI.rb
+These examples require the SamanageAPI.rb class file.
+* [Importing Departments](/Add%20Departments)
+* [Importing Users](/Add%20Users)
+* [Update Hardware Owners](/Hardware%20Owners)
+
+####Other Examples
+* [Users PHP](/Users%20PHP)
+* [AD2Users Powershell](AD2Users)
