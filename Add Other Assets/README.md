@@ -41,4 +41,4 @@ xml_post = "<other_asset>
 
 </other_asset>"
 ```
-To run the script simply enter ruby import_other_assets.rb other_assets.csv. Any asset creation that is not successful will be logged into a local error file.
+To run the script simply enter `ruby import_other_assets.rb other_assets.csv` Any asset creation that is not successful will be logged into a local error file.
