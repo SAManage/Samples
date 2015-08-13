@@ -1,7 +1,7 @@
 #Import Users w/ Custom Fields
 ##Overview
 
-This simple script creates Samanage users based on a CSV source.
+This simple script creates Samanage assets based on a CSV source with custom fields.
 
 ##How to use
 To use this script edit the the import_other_assets.rb file to match your Samanage user credentials:
