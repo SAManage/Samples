@@ -1,4 +1,4 @@
-#Import Users w/ Custom Fields
+#Import Other Assets w/ Custom Fields
 ##Overview
 
 This simple script creates Samanage assets based on a CSV source with custom fields.
