@@ -1,3 +1,0 @@
-Name,Manufacturer,Serial Number,Model,Category,Site,Department,ip,Status,tag,technical contact,Owner,Insurance,Refresh Date
-Import 1,Dell,12345,Latitude E6530,Workstation,North Carolina,Sales,10.0.0.1,Operational,A001,chris.walls+api@samanage.com,chris.walls+api@samanage.com,Yes,January 01 2015
-Import 2,Apple,1,Macbook Air,Laptop,North Carolina,IT,10.0.0.2,Spare,A002,walls1441@gmail.com,chris.walls+api@samanage.com,No,December 31 2015
