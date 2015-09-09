@@ -10,12 +10,12 @@ The following scripts are provided by Samanage as examples and training purposes
 
 ####Scripts Using SamanageAPI.rb
 These examples require the SamanageAPI.rb class file.
-* [Importing Departments](/Add%20Departments)
-* [Importing Users with Custom Fields](/Add%20Users)
-* [Update Hardware Owners](/Hardware%20Owners)
+* [Importing Departments](/Import%20Departments)
+* [Importing Users with Custom Fields](/Import%20Users)
+* [Update Hardware Owners](/Populate%20Hardware%20Owners)
 
 ####Other Examples
-* [Users PHP](/Users%20PHP)
+* [Users PHP](/Users%20-%20PHP)
 * [Network Scanner](/Samanage%20Network%20Scanner)
-* [AD2Users Powershell](AD2Users)
+* [AD2Users Powershell](Active%20Directory%20to%20Users)
 
