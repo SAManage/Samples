@@ -12,6 +12,7 @@ The following scripts are provided by Samanage as examples and training purposes
 These examples require the SamanageAPI.rb class file.
 * [Importing Departments](/Import%20Departments)
 * [Importing Users with Custom Fields](/Import%20Users)
+* [Importing Hardware with Custom Fields](/Import%20Hardwares)
 * [Populate Hardware Owners](/Populate%20Hardware%20Owners)
 
 ####Other Examples
