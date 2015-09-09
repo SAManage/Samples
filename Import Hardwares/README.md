@@ -5,7 +5,7 @@ The following scripts are provided by Samanage as examples and training purposes
 ##Overview
 
 This simple script imports Hardware into Samanage based on a CSV data source.
-Each row of the CSV will send a new user to Samanage as an XML object based on the template.
+Each row of the CSV will send a new user to Samanage as an XML object based on the [template](https://www.samanage.com/api/computers.html).
 In this example, each row has columns which are selected by row["Column Name"].
 
 ```ruby
