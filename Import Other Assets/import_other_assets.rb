@@ -17,7 +17,7 @@ fname = "Error Log - #{Time.now.strftime("%F - %H.%M")}.csv"
 puts fname
 
 log = File.open(fname, "w+")
-log.write("email,name,title,phone,mobile phone,language,site,department,reports to,role,employee id,nickname,error\n")
+log.write("Name,Asset ID,Status,Asset Type,Description,IP,Manufacturer,Model,Serial Number,Owner,User,Site,Department,Cost,Purchased From\n")
 log.close
 
 
