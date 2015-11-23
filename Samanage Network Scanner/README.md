@@ -20,7 +20,7 @@ It is recommend to run the code below periodically to detect new devices on your
 
 To use the tool, follow this steps
 
-1) Get nmap [here](https://nmap.org/)
+1) Download and install nmap [here](https://nmap.org/) 
 
 2) Get the network scanning code [here](https://github.com/SAManage/Samples/blob/Snmp/Samanage%20Network%20Scanner/samanage-network-scanner.rb)
 
