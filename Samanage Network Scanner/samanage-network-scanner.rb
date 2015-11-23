@@ -61,31 +61,39 @@ error_log = File.new(fname, "w+")
 error_log.write("Name,IP,Manufacturer,Asset Type,Asset Status,Mac,Error\n")
 error_log.close
 
-
-system('cls')
-Nmap::XML.new('scan-db') do |data|
+i = 0
+# system('clear')
+Nmap::XML.new('scan-db2') do |data|
 	data.each_host do |host|
+		i += 1
 		skip = false
+		#puts host.hostnames
 		####################################################
 		#Skip the assets that are not returning data and the local machine
 		#If the OS is not returned then we can not obtain enough information to create an asset
-		if host.status.to_s.include? ("down" || "no-response")
+
+		if host.status.to_s.include? ("down" || "no-response")			
+			puts "Machine #{host.ipv4} Not Found"
 			next
 		end
 		if host.hostnames[0].to_s.include? "localhost-response"
 			next
 		end
-		if host.os.nil?
-			next
-		end
 		if host.mac.nil?
+			puts "Machine #{host.ipv4} Mac Address Not Found"
 			next
 		end
 		####################################################
-		#Guess the manufacturer based on mac address
-		manufacturer = mac.lookup host.mac.to_s
+		#Set Manufcaturer based on vendor
+		#This is a mandatory field
+		if host.vendor.nil?
+			manufacturer = "Unknown"
+		else
+			manufacturer = host.vendor
+		end
+
 		status = host.status.to_s
-		
+
 		####################################################
 		#The we may return multiple OS values so this block scans them all and guesses the type
 		#based on the most common OS found
@@ -113,17 +121,19 @@ Nmap::XML.new('scan-db') do |data|
 		###Not sure if anything else can be returned, if so it could be a problem
 		if status == 'up'
 			 status = 'Operational'
+		else
+			status = 'Spare'
 		end
 
 
-		#This block checks to see if 
+		#This block checks to see if
 
 		list = SamanageAPI.get("other_assets.xml?MacAddress=#{host.mac}")
 		total = list[:data]["total_entries"][0]
 		if total.to_i > 0
 			puts "#{host.hostnames[0]}: Asset already exists"
 			error_log = File.new(fname, "a+")
-			error_log.write("#{host.hostnames[0]},#{host.ipv4},\"#{manufacturer[:name]}\",\"#{type[0]}\",#{status},#{host.mac},Matches: #{list[:data]["other_asset"][0]["href"][0]}\n")
+			error_log.write("#{host.hostnames[0]},#{host.ipv4},\"#{manufacturer}\",\"#{type[0]}\",#{status},#{host.mac},Matches: #{list[:data]["other_asset"][0]["href"][0]}\n")
 			error_log.close
 			next
 		end
@@ -131,12 +141,12 @@ Nmap::XML.new('scan-db') do |data|
 		####################################################
 		# You can choose to skip any hosts just by checking a field, and conditionally setting skip = true
 		# For example if the ip string value is 192.168.1.1:
-		# 
+		#
 		#if host.ipv4.to_s == "192.168.1.1"
 		#	skip = true
 		#end
 
-		if skip
+		if skip			
 			next
 		end
 		####################################################
@@ -147,7 +157,7 @@ Nmap::XML.new('scan-db') do |data|
 			xml = "<other_asset>
 			<name>#{host.hostnames[0]}</name>
 			<ip>#{host.ipv4}</ip>
-			<manufacturer>#{manufacturer[:name]}</manufacturer>
+			<manufacturer>#{manufacturer}</manufacturer>
 			<asset_type><name>#{type[0]}</name></asset_type>
 			<status><name>#{status}</name></status>
 			<custom_fields_values>
@@ -156,6 +166,7 @@ Nmap::XML.new('scan-db') do |data|
 				<value>#{host.mac}</value>
 			</custom_fields_value>
 			</custom_fields_values>\n</other_asset>"
+			#puts xml
 			result = SamanageAPI.post('other_assets.xml', xml)
 			if result[:success] == false
 				error = result[:data]["error"][0]
@@ -163,7 +174,7 @@ Nmap::XML.new('scan-db') do |data|
 				error.gsub(/\r/," ")
 				puts "#{host.hostnames[0]} Failed: #{error}"
 				error_log = File.new(fname, "a+")
-				error_log.write("#{host.hostnames[0]},#{host.ipv4},\"#{manufacturer[:name]}\",\"#{type[0]}\",#{status},#{host.mac},#{error}\n")
+				error_log.write("#{host.hostnames[0]},#{host.ipv4},\"#{manufacturer}\",\"#{type[0]}\",#{status},#{host.mac},#{error}\n")
 				error_log.close
 			else
 				puts "Imported: #{host.hostnames[0]}"
@@ -171,5 +182,3 @@ Nmap::XML.new('scan-db') do |data|
 		end
 	end
 end
-
-
