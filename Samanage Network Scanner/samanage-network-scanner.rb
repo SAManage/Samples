@@ -63,7 +63,7 @@ error_log.close
 
 i = 0
 # system('clear')
-Nmap::XML.new('scan-db2') do |data|
+Nmap::XML.new('scan-db') do |data|
 	data.each_host do |host|
 		i += 1
 		skip = false
