@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'nmap/program'
 require 'nmap/xml'
 require 'mac_vendor'

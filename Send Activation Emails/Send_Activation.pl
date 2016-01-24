@@ -1,6 +1,8 @@
+#!/usr/bin/env perl
+
 #############################################################################################################
 #
-#!/usr/bin/perl
+#
 #
 # This script mass sends activation emails to Samanage users.
 # Once they receive the email they'll be prompted to create a user name and password to log into samanage.
