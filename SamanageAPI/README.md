@@ -2,6 +2,7 @@
 ##Overview
 
 SamanageAPI is a simple Ruby class that provides easy connectivity to the Samanage API. 
+This requires the gems xmlsimple and rest_client
 
 ##How to use
 
