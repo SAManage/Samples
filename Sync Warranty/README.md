@@ -29,6 +29,6 @@ This simple script allows you to sync warranty information into Samanage using P
 warranty['Start Date'] = datetime.strptime(warranty['Start Date'], '%m/%d/%Y')
 warranty['End Date'] = datetime.strptime(warranty['End Date'], '%m/%d/%Y')
 ```
-	For more information on date formatting visit the [Python docs](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
+For more information on date formatting visit the [Python docs](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
 
 - All warranties included in the CSV will be uploaded. Please exclude any expired warranties if you do not wish to import them.
