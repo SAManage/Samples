@@ -19,7 +19,8 @@ This simple script allows you to sync warranty information into Samanage using P
 	- ``` pip install requests ```
 - Compile your warranty information into the above **warranties.csv** template
 - From the script directory use the command:
-	- ```python sync_warranties.py warranties.csv email@domain.com password``` (Using your native samanage password)
+	- For customers using a US datacenter: ```python sync_warranties.py warranties.csv email@domain.com password``` (Using your native samanage password)
+	- For customers using an EU datacenter: ```python sync_warranties.py warranties.csv email@domain.com password eu``` (Using your native samanage password)
 
 
 ### Notes
