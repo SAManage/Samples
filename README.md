@@ -14,9 +14,3 @@ These examples require the SamanageAPI.rb class file.
 * [Importing Users with Custom Fields](/Import%20Users)
 * [Importing Hardware with Custom Fields](/Import%20Hardwares)
 * [Populate Hardware Owners](/Populate%20Hardware%20Owners)
-
-####Other Examples
-* [Users PHP](/Users%20-%20PHP)
-* [Network Scanner](/Samanage%20Network%20Scanner)
-* [AD2Users Powershell](Active%20Directory%20to%20Users)
-

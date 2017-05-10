@@ -1,5 +1,6 @@
+#!/usr/bin/env ruby
+
 require 'csv'
-require 'rubygems'
 require_relative 'SamanageAPI.rb'
 
 unless ARGV[0]

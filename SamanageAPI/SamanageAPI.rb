@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 #This was tested with the following:
 # => 	ruby 2.0.0p451 (2014-02-24) [i386-mingw32]
 # =>	xml-simple (1.1.3)	
