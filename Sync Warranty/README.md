@@ -24,9 +24,11 @@ This simple script allows you to sync warranty information into Samanage using P
 
 
 ### Notes
-Dates are parsed explicitly using the format 01/31/2000. If you wish to use a different date format this can be modified here:
+1. Dates are parsed explicitly using the format 01/31/2000. If you wish to use a different date format this can be modified here:
 ```python
 warranty['Start Date'] = datetime.strptime(warranty['Start Date'], '%m/%d/%Y')
 warranty['End Date'] = datetime.strptime(warranty['End Date'], '%m/%d/%Y')
 ```
 For more information on date formatting visit the [Python docs](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
+
+2. All warranties included in the CSV will be uploaded. Please exclude any expired warranties if you do not wish to import them.
