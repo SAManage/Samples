@@ -46,7 +46,7 @@ class Samanage:
 		hardware = api_call.json()
 		# Sync if exactly 1 asset found AND serial matches exactly
 		if (len(hardware) == 1) and (hardware[0]['serial_number'] == serial_number):
-			print("Updating ",hardware['name'], 'Start: ',warranty['Start Date'], ' End: ', warranty['End Date'],' --- ',hardware['url'])
+			print("Updating ",hardware[0]['name'], 'Start: ',warranty['Start Date'], ' End: ', warranty['End Date'],' --- ',hardware[0]['href'].replace('.json',''))
 			self.create_warranty(hardware[0]['id'], warranty)
 		else:
 			print('Serial Number: ', str(serial_number), 'Not Found or multiple matches: https://app.samanage.com/' + path)
