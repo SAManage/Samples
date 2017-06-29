@@ -27,7 +27,7 @@ CSV.foreach(ARGV[0], :headers => true) do |row|
   <name>#{row["Site Name"]}</name>
   <location>#{row["Location"]}</location>
   <description>#{row["Description"]}</description>
-  <time-zone>#{row["Time zone"].gsub("&","&amp;")}</time-zone>
+  <time-zone>#{row["Time zone"].to_s.gsub("&","&amp;")}</time-zone>
   <language>#{row["Language"]}</language>
   <business-record-id>#{row["Business record ID"]}</business-record-id>
   </site>"
