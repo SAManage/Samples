@@ -3,11 +3,8 @@ Once they receive the email they'll be prompted to create a user name and passwo
 This script does not create new users or modify existing users. 
 
 
+To run this script first install Ruby 2.3+ and the gem 'samanage'
 
+To invite all your users to Samanage run the command:
 
-To run- install Perl and required libraries and run the following command:
-This script was written and tested with perl 5, version 18, subversion 1 (v5.18.1)
-
-To run the script enter: **perl "Send_Activation.pl" "example@email.com" "password"**
-
-
+`ruby send_activations.rb API_TOKEN`
