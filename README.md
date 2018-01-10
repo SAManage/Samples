@@ -2,6 +2,9 @@
 
 The following scripts are provided by Samanage as examples and training purposes only and not designed to work in every use case without some modification to the script itself. These scripts are not supported by Samanage as part of your Samanage Master Subscription Agreement, however if you would like this script customized to support your use case, please contact us at API.Scripts@samanage.com for a personal quote.
 
+Ruby scripts utilize the samanage for ruby gem which can be installed via `gem install samanage`
+Python scripts utilize the python requests module and support python 3.x
+
 
 * [Importing Departments](/Import%20Departments)
 * [Importing Users with Custom Fields](/Import%20Users)
