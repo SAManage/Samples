@@ -1,8 +1,8 @@
-#Import Sites
-##Overview
+# Import Sites
+## Overview
 
 This simple script creates Samanage sites based on a CSV source.
-##How to use
+## How to use
 
 Edit import_sites.rb by adding your Samanage API credentials to the "email" and "pass" variables, then enter the following command:
 `
