@@ -1,41 +1,13 @@
-#Import Users w/ Custom Fields
-##Overview
+# Import Users w/ Custom Fields
 
-This simple script creates Samanage users based on a CSV source.
+The following scripts are provided by Samanage as examples and training purposes only and not designed to work in every use case without some modification to the script itself. These scripts are not supported by Samanage as part of your Samanage Master Subscription Agreement, however if you would like this script customized to support your use case, please contact us at api.scripts@samanage.com.
 
-##How to use
-To use this script edit the the import_users.rb fileto match your Samanage user credentials:
+## Overview
 
-```ruby
-email = "email@company.com"
-pass = "password"
-```
+This simple script imports other_asset into Samanage based on a CSV data source.
+Each row of the CSV will create a new user to Samanage as an JSON object based on the [template](https://www.samanage.com/api/users.html).
+In this example, each row has columns which are selected by `row["Column Name"]`.
 
-Each row of the CSV will send a new user to Samanage as an XML object based on the template. In this example, each row has columns which are selected by row["Column Name"].
+To run the script simply enter:
 
-```ruby
-xml_post = "<user>
-<name>#{row["name"]}</name>
-<email>#{row["email"]}</email>
-<title>#{row["title"]}</title>
-<phone>#{row["phone"]}</phone>
-<mobile_phone>#{row["mobile phone"]}</mobile_phone>
-<language>#{row["language"]}</language>
-<site><name>#{row["site"]}</name></site>
-<department><name>#{row["department"]}</name></department>
-<reports_to><email>#{row["reports to"]}</email></reports_to>
-<role><name>#{row["role"]}</name></role>
-<custom_fields_values>
-	<custom_fields_value>
-		<name>Employee ID</name>
-		<value>#{row["employee id"]}</value>
-	</custom_fields_value>
-	<custom_fields_value>
-		<name>Nickname</name>
-		<value>#{row["nickname"]}</value>
-	</custom_fields_value>
-</custom_fields_values>
-</user>"
-```
-
-To run the script simply enter ruby import_users.rb users.csv. Any user creation that is not successful will be logged into a local error file.
+`ruby import_users.rb API_TOKEN users.csv`

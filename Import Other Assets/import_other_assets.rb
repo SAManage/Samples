@@ -1,65 +1,52 @@
-#!/usr/bin/env ruby
-
+require 'samanage'
 require 'csv'
-require 'rubygems'
-require_relative 'SamanageAPI.rb'
+api_token = ARGV[0]
+input = ARGV[1]
+datacenter = ARGV[2]
 
-unless ARGV[0]
-	puts "To run this script please enter a filename: \n\tEx: 'ruby import_users.rb \"filename.csv\"" 
-	abort
+@samanage = Samanage::Api.new(token: api_token, datacenter: datacenter)
+csv_rows = CSV.read(input, headers: true, encoding: 'ISO-8859-1')
+
+DEFAULT_FILENAME = "Results-#{input.split('.').first}-#{DateTime.now.strftime("%b-%d-%Y-%l%M")}.csv"
+OUTPUT_HEADERS = csv_rows.headers << 'Error'
+
+
+def log_to_csv(row: , filename: DEFAULT_FILENAME)
+	CSV.open(filename, 'a+'){|csv| 
+		csv << OUTPUT_HEADERS if csv.count.eql? 0
+		csv << row
+	}
 end
 
-email = "email@company.com"
-pass = "Password"
 
-
-
-
-fname = "Error Log - #{Time.now.strftime("%F - %H.%M")}.csv"
-puts fname
-
-log = File.open(fname, "w+")
-log.write("Name,Asset ID,Status,Asset Type,Description,IP,Manufacturer,Model,Serial Number,Owner,User,Site,Department,Cost,Purchased From\n")
-log.close
-
-
-CSV.foreach(ARGV[0], :headers => true) do |row|
-xml_post = "<other_asset>
-<name>#{row["Name"]}</name>
-<asset_id>#{row["Asset ID"]}</asset_id>
-<status><name>#{row["Status"]}</name></status>
-<asset_type><name>#{row["Asset Type"]}</name></asset_type>
-<description>#{row["Description"]}</description>
-<ip>#{row["IP"]}</ip>
-<manufacturer>#{row["Manufacturer"]}</manufacturer>
-<model>#{row["Model"]}</model>
-<serial_number>#{row["Serial Number"]}</serial_number>
-<owner><email>#{row["Owner"]}</email></owner>
-<user><email>#{row["User"]}</email></user>
-<site><name>#{row["Site"]}</name> </site>
-<department><name>#{row["Department"]}</name></department>
-<custom_fields_values>
-	<custom_fields_value>
-		<name>Cost</name>
-		<value>#{row["Cost"]}</value>
-	</custom_fields_value>
-	<custom_fields_value>
-		<name>Purchased From</name>
-		<value>#{row["Purchased From"]}</value>
-	</custom_fields_value>
-</custom_fields_values>
-</other_asset>"
-
-puts xml_post
-
-result = SamanageAPI.post('other_assets.xml', email, pass, xml_post)
-if result["code"] > 201
-	puts "#{row["name"]} failed: #{result["code"]}\n#{result["xml"]}\n"
-	log = File.open(fname, "a+")
-	log.write("#{row.to_s.chomp},#{result["code"]}\n")
-	log.close
-else
-	puts "#{row["name"]} created\n"
+def import_other_asset(row: )
+	other_asset = {
+		other_asset: {
+			name: row['Name'],
+			description: row['Description'],
+			asset_id: row['Asset ID'],
+			status: {name: row['Status']},
+			asset_type: {name: row['Asset Type']},
+			ip_address: row['IP'],
+			manufacturer: row['Manufacturer'],
+			model: row['Model'],
+			serial_number: row['Serial Number'],
+			owner: {email: row['Owner']},
+			user: {email: row['User']},
+			site: {name: row['Site']},
+			department: {name: row['Department']},
+			custom_fields_values: {
+				custom_fields_value: [
+					{name: 'Cost', value: row['Cost']},
+					{name: 'Purchased From', value: row['Purchased From']}
+				]
+			}
+		}
+	}
+	@samanage.create_other_asset(payload: other_asset)
+	rescue => e
+		log_to_csv(row: row.to_h.values)
 end
 
-end
+
+csv_rows.map{|row| import_other_asset(row: row)}

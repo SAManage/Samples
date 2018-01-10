@@ -1,41 +1,35 @@
-#!/usr/bin/env ruby
-
+require 'samanage'
 require 'csv'
-require_relative 'SamanageAPI.rb'
+api_token = ARGV[0]
+input = ARGV[1]
+datacenter = ARGV[2]
 
-unless ARGV[0]
-	puts "To run this script please enter a filename: \n\tEx: 'ruby import_departments.rb \"filename.csv\"" 
-	abort
+@samanage = Samanage::Api.new(token: api_token, datacenter: datacenter)
+csv_rows = CSV.read(input, headers: true, encoding: 'ISO-8859-1')
+
+DEFAULT_FILENAME = "Results-#{input.split('.').first}-#{DateTime.now.strftime("%b-%d-%Y-%l%M")}.csv"
+OUTPUT_HEADERS = csv_rows.headers << 'Error'
+
+
+def log_to_csv(row: , filename: DEFAULT_FILENAME)
+	CSV.open(filename, 'a+'){|csv| 
+		csv << OUTPUT_HEADERS if csv.count.eql? 0
+		csv << row
+	}
 end
 
-email = ""
-pass = ""
 
-
-
-
-fname = "Error Log - #{Time.now.strftime("%F - %H.%M")}.csv"
-puts fname
-
-log = File.open(fname, "w+")
-log.write("name,description,error\n")
-log.close
-
-
-CSV.foreach(ARGV[0], :headers => true) do |row|
-xml_post = "<department>
-<name>#{row["Department Name"]}</name>
-<description>#{row["Description"]}</description>
-</department>"
-
-result = SamanageAPI.post('departments.xml', email, pass, xml_post)
-if result["code"] > 201
-	puts "#{row["Department Name"]} failed: #{result["code"]}\n#{result["xml"]}\n"
-	log = File.open(fname, "a+")
-	log.write("#{row.to_s.chomp},#{result["code"]}\n")
-	log.close
-else
-	puts "#{row["Department Name"]} created\n"
+def import_department(row: )
+	department = {
+		department: {
+			name: row['name'],
+			description: row['description']
+		}
+	}
+	@samanage.create_department(payload: department)
+	rescue => e
+		log_to_csv(row: row.to_h.values)
 end
 
-end
+
+csv_rows.map{|row| import_department(row: row)}

@@ -1,44 +1,13 @@
-#Import Other Assets w/ Custom Fields
-##Overview
+# Import Other Assets w/ Custom Fields
 
-This simple script creates Samanage assets based on a CSV source with custom fields.
+The following scripts are provided by Samanage as examples and training purposes only and not designed to work in every use case without some modification to the script itself. These scripts are not supported by Samanage as part of your Samanage Master Subscription Agreement, however if you would like this script customized to support your use case, please contact us at api.scripts@samanage.com.
 
-##How to use
-To use this script edit the the import_other_assets.rb file to match your Samanage user credentials:
+## Overview
 
-```ruby
-email = "email@company.com"
-pass = "password"
-```
+This simple script imports other_asset into Samanage based on a CSV data source.
+Each row of the CSV will create a new user to Samanage as an JSON object based on the [template](https://www.samanage.com/api/other_assets.html).
+In this example, each row has columns which are selected by `row["Column Name"]`.
 
-Each row of the CSV will send a new user to Samanage as an XML object based on the template. In this example, each row has columns which are selected by row["Column Name"].
+To run the script simply enter:
 
-```ruby
-xml_post = "<other_asset>
-<name>#{row["Name"]}</name>
-<asset_id>#{row["Asset ID"]}</asset_id>
-<status><name>#{row["Status"]}</name></status>
-<asset_type><name>#{row["Asset Type"]}</name></asset_type>
-<description>#{row["Description"]}</description>
-<ip>#{row["IP"]}</ip>
-<manufacturer>#{row["Manufacturer"]}</manufacturer>
-<model>#{row["Model"]}</model>
-<serial_number>#{row["Serial Number"]}</serial_number>
-<owner><email>#{row["Owner"]}</email></owner>
-<user><email>#{row["User"]}</email></user>
-<site><name>#{row["Site"]}</name> </site>
-<department><name>#{row["Department"]}</name></department>
-<custom_fields_values>
-	<custom_fields_value>
-		<name>Cost</name>
-		<value>#{row["Cost"]}</value>
-	</custom_fields_value>
-	<custom_fields_value>
-		<name>Purchased From</name>
-		<value>#{row["Purchased From"]}</value>
-	</custom_fields_value>
-</custom_fields_values>
-
-</other_asset>"
-```
-To run the script simply enter `ruby import_other_assets.rb other_assets.csv` Any asset creation that is not successful will be logged into a local error file.
+`ruby import_other_assets.rb API_TOKEN other_assets.csv`

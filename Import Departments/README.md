@@ -1,11 +1,13 @@
-#Import Departments
-##Overview
+# Import Departments
 
-This simple script creates Samanage departments based on a CSV source.
+The following scripts are provided by Samanage as examples and training purposes only and not designed to work in every use case without some modification to the script itself. These scripts are not supported by Samanage as part of your Samanage Master Subscription Agreement, however if you would like this script customized to support your use case, please contact us at api.scripts@samanage.com.
 
-##How to use
-Edit import_departments.rb by adding your Samanage API credentials to the "email" and "pass" variables, then enter the following command:
-`
-ruby import_departments.rb filename.csv
-`
-This will create each department and generate a log entry for any errors that occur.
+## Overview
+
+This simple script imports department into Samanage based on a CSV data source.
+Each row of the CSV will create a new user to Samanage as an JSON object based on the [template](https://www.samanage.com/api/departments).
+In this example, each row has columns which are selected by `row["Column Name"]`.
+
+To run the script enter:
+
+`ruby import_departments.rb API_TOKEN departments.csv`
