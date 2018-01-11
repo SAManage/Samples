@@ -10,4 +10,4 @@ In this example, each row has columns which are selected by `row["Column Name"]`
 
 To run the script enter:
 
-`ruby import_hardwares.rb API_TOKEN hardwares.csv`
+`ruby import_hardwares.rb API_TOKEN hardwares.csv` or for the eu datacenter: `ruby import_hardwares.rb API_TOKEN hardwares.csv eu`
