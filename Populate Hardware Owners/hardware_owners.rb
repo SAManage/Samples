@@ -27,7 +27,7 @@ def assign_hardware_owner(row: )
 				owner: {email: row['Owner']}
 			}
 		}
-		@samanage.create_other_asset(payload: hardware_owner_update)
+		@samanage.update_hardware(id: hardware_id, payload: hardware_owner_update)
 	else
 		row['Error'] = 'Hardware not found'
 		log_to_csv(row: row.to_h.values)
