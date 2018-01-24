@@ -16,13 +16,16 @@ end
 
 
 def create_user(user: )
-		puts "user: #{user.inspect}"
-		user = {
-			user: {
-				name: user['name'],
-				email: user['email'],
-			}
+	puts "user: #{user.inspect}"
+	user = {
+		user: {
+			name: user['name'],
+			email: user['email'],
 		}
+	}
+	@samanage.create_user(payload: user)
+	rescue => e
+		log_to_csv(row: row.to_h.values)
 end
 
 
