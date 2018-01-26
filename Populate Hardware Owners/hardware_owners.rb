@@ -20,7 +20,8 @@ end
 
 
 def assign_hardware_owner(row: )
-	hardware_id = @samanage.find_hardware_id_by_serial(serial_number: row['Serial Number'])
+	hardwares = @samanage.find_hardwares_by_serial(serial_number: row['Serial Number'])[:data]
+	hardware_id = hardwares.select{|h| h['serial_number'] == row['Serial Number']}.first.to_h['id']
 	if hardware_id
 		hardware_owner_update = {
 			hardware: {
@@ -33,6 +34,7 @@ def assign_hardware_owner(row: )
 		log_to_csv(row: row.to_h.values)
 	end
 	rescue => e
+		row['Error'] = e
 		log_to_csv(row: row.to_h.values)
 end
 
