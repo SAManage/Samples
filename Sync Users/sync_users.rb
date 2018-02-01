@@ -6,7 +6,7 @@ input = ARGV[1]
 datacenter = ARGV[2]
 @samanage = Samanage::Api.new(token: api_token, datacenter: datacenter)
 csv_users = CSV.read(input, headers: true, encoding: 'ISO-8859-1')
-OUTPUT_HEADERS = csv_users.headers << 'Errors'
+OUTPUT_HEADERS = csv_users.headers << 'error'
 DEFAULT_FILENAME = "Errors-#{input.split('.').first}-#{DateTime.now.strftime("%b-%d-%Y-%l%M")}.csv"
 
 def log_to_csv(user: , filename: DEFAULT_FILENAME, headers: OUTPUT_HEADERS)
