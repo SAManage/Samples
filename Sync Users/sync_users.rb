@@ -39,14 +39,13 @@ def sync_user(user: )
     puts "Updating #{user['email']} found"
     @samanage.update_user(payload: user_json, id: user_id)
   else
-    puts "Creating #{user['email']]}"
+    puts "Creating #{user['email']}"
     @samanage.create_user(payload: user_json)
   end
 
   rescue => e
-	user['error'] = e
+    user['error'] = "#{e.status_code}: #{e.response}"
     log_to_csv(user: user.values)
 end
-
 
 csv_users.map{|user| sync_user(user: user.to_h)}
