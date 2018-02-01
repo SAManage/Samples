@@ -4,8 +4,8 @@ The following scripts are provided by Samanage as examples and training purposes
 
 ## Overview
 
-This simple script imports other_asset into Samanage based on a CSV data source.
-Each row of the CSV will create a new Site to Samanage as an JSON object based on the [template](https://www.samanage.com/api/users.html).
+This simple script syncs users into Samanage based on a CSV data source.
+Each row of the CSV will sync a User to Samanage as an JSON object based on the [template](https://www.samanage.com/api/users.html).
 In this example, each row has columns which are selected by `row["Column Name"]`.
 
 To run the script simply enter:
