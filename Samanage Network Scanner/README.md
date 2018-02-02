@@ -31,5 +31,10 @@ To use the tool, follow this steps
 5) Create additional Asset Types in your Other Asset module. If the appropriate asset type does not exist when the tool runs, an error message will be displayed and that asset will not get into your inventory. Typical types that you will want to add are: “general purpose”, “Unknown”, “VoIP Phone”.
 
 6) Edit the sample code to provide your subnet prefix - for example 192.168... that means that the entire subnet of 192.168 will be scanned. You can provide multiple subnet ranges by separating them via commas. (Lines #39)
+```ruby
+  nmap.targets = ["192.168.0.*"]
+  # For multiple ranges:
+  # nmap.targets = ["192.168.0.*","10.10.10.*"]
+```
 
 You can run the script by typing "ruby samanage-network-scanner.rb API_TOKEN DATACENTER"
