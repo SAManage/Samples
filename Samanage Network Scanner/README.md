@@ -22,14 +22,14 @@ To use the tool, follow this steps
 
 1) Download and install nmap [here](https://nmap.org/) 
 
-2) Get the network scanning code [here](https://github.com/SAManage/Samples/blob/Snmp/Samanage%20Network%20Scanner/samanage-network-scanner.rb)
+2) Get the network scanning code [here](https://github.com/SAManage/Samples/blob/master/Samanage%20Network%20Scanner/samanage-network-scanner.rb)
 
 3) Add a new custom field called "MacAddress" to your Other Asset object via the setup section in Samanage. The tool will populate this field with the MacAddress of the collected devices.
 
-4) Create additional Asset Types in your Other Asset module. If the appropriate asset type does not exist when the tool runs, an error message will be displayed and that asset will not get into your inventory. Typical types that you will want to add are: “general purpose”, “Unknown”, “VoIP Phone”.
+4) Install the samanage ruby gem `gem install samanage`
 
-5) Edit the sample code to provide your subnet prefix - for example 192.168... that means that the entire subnet of 192.168 will be scanned. You can provide multiple subnet ranges by separating them via commas.
+5) Create additional Asset Types in your Other Asset module. If the appropriate asset type does not exist when the tool runs, an error message will be displayed and that asset will not get into your inventory. Typical types that you will want to add are: “general purpose”, “Unknown”, “VoIP Phone”.
 
-6) Edit the Samanage API gem to provide your user/password that is used for API access. This user should have the permission to create new assets in Other Assets.
+6) Edit the sample code to provide your subnet prefix - for example 192.168... that means that the entire subnet of 192.168 will be scanned. You can provide multiple subnet ranges by separating them via commas. (Lines #39)
 
-You can run the script by typing "ruby samanage-network-scanner.rb"
+You can run the script by typing "ruby samanage-network-scanner.rb API_TOKEN DATACENTER"
