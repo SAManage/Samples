@@ -28,11 +28,11 @@ To use the tool, follow this steps
 
 4) Install the samanage ruby gem `gem install samanage`
 
-5) Edit the sample code to provide your subnet prefix - for example 192.168... that means that the entire subnet of 192.168 will be scanned. You can provide multiple subnet ranges by separating them via commas. (Lines #39)
+5) Edit the sample code to provide your subnet prefix - for example 192.168... that means that the entire subnet of 192.168 will be scanned. You can provide multiple subnet ranges by separating them via commas. (Line #39)
 ```ruby
   nmap.targets = ["192.168.0.*"]
   # For multiple ranges:
   # nmap.targets = ["192.168.0.*","10.10.10.*"]
 ```
 
-You can run the script by typing "ruby samanage-network-scanner.rb API_TOKEN DATACENTER"
+6) Run the script by typing `ruby samanage-network-scanner.rb API_TOKEN` or `ruby samanage-network-scanner.rb API_TOKEN eu` for customers in the european datacenter
