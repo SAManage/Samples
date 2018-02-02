@@ -4,7 +4,6 @@ require 'nmap/program'
 require 'nmap/xml'
 require 'mac_vendor'
 require 'samanage'
-require 'ap'
 
 
 token = ARGV[0]
