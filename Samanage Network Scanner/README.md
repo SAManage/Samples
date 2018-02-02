@@ -1,22 +1,22 @@
-#Network Scanning Interface for Samanage
+# Network Scanning Interface for Samanage
 
 The following scripts are provided by Samanage as examples and training purposes only and not designed to work in every use case without some modification to the script itself. These scripts are not supported by Samanage as part of your Samanage Master Subscription Agreement, however if you would like this script customized to support your use case, please contact us at API.Scripts@samanage.com for a personal quote.
 
-##Use Case 
+## Use Case 
 
 Enhance the Samanage IT asset management solution to collect inventory of networked assets across your network, and manage these assets through the Samanage application.
 
-##Using NMAP for network scanning
+## Using NMAP for network scanning
 
 The following solution is using the popular open source NMAP tool to scan your network and detect any networked device, and collect their information. NMAP is a very popular and robust network scanning open source solution that is actively maintained by the community. NMAP runs on Windows or Unix.
 
-##How does it work?
+## How does it work?
 
 The code example below is a ruby-gem that: Invokes the NMAP tool to collect the network inventory Parses the output from the NMAP tool Upload the parsed information to Samanage using the Samanage API. Create a report of all assets collected that were not imported automatically along with the reason.
 
 It is recommend to run the code below periodically to detect new devices on your network and load them into Samanage.
 
-##Configuration
+## Configuration
 
 To use the tool, follow this steps
 
