@@ -19,4 +19,9 @@ This simple script allows you to sync warranty information into Samanage using r
 ### Notes
 - Dates are parsed explicitly using the format 01/31/2000. If you wish to use a different date format this can be modified here:
 
+```ruby
+	start_date = Date.strptime(warranty['Start Date'], "%m/%d/%Y")
+	end_date = Date.strptime(warranty['End Date'], '%m/%d/%Y')
+```
+
 - All warranties included in the CSV will be uploaded. Please exclude any expired warranties if you do not wish to import them.
