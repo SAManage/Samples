@@ -26,19 +26,51 @@ def log_to_csv(other_asset: , filename: DEFAULT_FILENAME, headers: HEADERS)
 end
 
 
-# https://github.com/sophsec/ruby-nmap
-Nmap::Program.sudo_scan do |nmap|
-	nmap.syn_scan = true 
-	nmap.service_scan = false 
-	nmap.os_fingerprint = true 
-	nmap.xml = SCAN_XML
-	nmap.verbose = true 
+module OS
+  def OS.windows?
+    (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+  end
 
-	nmap.ports = [20,21,22,23,25,80,110,443,512,522,8080,1080] 
-	nmap.targets = ["192.168.0.*"]
-	# nmap.targets = ["192.168.0.16"]
+  def OS.mac?
+   (/darwin/ =~ RUBY_PLATFORM) != nil
+  end
+
+  def OS.unix?
+    !OS.windows?
+  end
+
+  def OS.linux?
+    OS.unix? and not OS.mac?
+  end
 end
 
+
+# https://github.com/sophsec/ruby-nmap
+if OS.windows?
+	Nmap::Program.scan do |nmap|
+		nmap.syn_scan = true 
+		nmap.service_scan = false 
+		nmap.os_fingerprint = true 
+		nmap.xml = SCAN_XML
+		nmap.verbose = true 
+		
+		nmap.ports = [20,21,22,23,25,80,110,443,512,522,8080,1080] 
+		nmap.targets = ["192.168.0.*"]
+		# nmap.targets = ["192.168.0.16"]
+	end
+else
+	Nmap::Program.sudo_scan do |nmap|
+		nmap.syn_scan = true 
+		nmap.service_scan = false 
+		nmap.os_fingerprint = true 
+		nmap.xml = SCAN_XML
+		nmap.verbose = true 
+
+		nmap.ports = [20,21,22,23,25,80,110,443,512,522,8080,1080] 
+		nmap.targets = ["192.168.0.*"]
+		# nmap.targets = ["192.168.0.16"]
+	end
+end
 mac = MacVendor.new
 
 puts "\n\n\n~~~~~~~~~~~~~~~~~~\nSyncing Samanage Records"
