@@ -24,7 +24,7 @@ To use the tool, follow this steps
 
 2) Get the network scanning code [here](https://github.com/SAManage/Samples/blob/master/Samanage%20Network%20Scanner/samanage-network-scanner.rb)
 
-3) Add a new custom field called "MacAddress" to your Other Asset object via the setup section in Samanage. The tool will populate this field with the MacAddress of the collected devices.
+3) Add a new custom field called "Mac Address" to your Other Asset object via the setup section in Samanage. The tool will populate this field with the MacAddress of the collected devices.
 
 4) Install the samanage, nmap and mac_vendor ruby gems `gem install samanage ruby-nmap mac_vendor`
 
