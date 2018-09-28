@@ -1,6 +1,5 @@
 require 'samanage'
 require 'csv'
-require 'ap'
 
 api_token = ARGV[0]
 input = ARGV[1]
