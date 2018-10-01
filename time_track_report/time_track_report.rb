@@ -34,6 +34,7 @@ end
         'Time Entered At'           => time_track['created_at'],
         'Incident URL'              => "https://app#{datacenter}.samanage.com/incidents/#{incident['id']}",
         'Incident Number'           => incident['number'],
+        'Incident State'             => incident.dig('state'),
         'Incident Created At'       => incident['created_at'],
         'Incident Updated At'       => incident['updated_at'],
         'Incident Category'         => incident.dig('category','name'),
