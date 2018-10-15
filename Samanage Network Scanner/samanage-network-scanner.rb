@@ -7,7 +7,8 @@ require 'samanage'
 
 
 token = ARGV[0]
-@samanage = Samanage::Api.new(token: token)
+datacenter = ARGV[1]
+@samanage = Samanage::Api.new(token: token, datacenter: datacenter)
 SCAN_XML = "nmap-data#{DateTime.now.strftime("%H-%M-%b-%d-%y")}.xml"
 LOGFILE = "Assets Not Imported #{DateTime.now.strftime("%H-%M-%b-%d-%y")}.csv"
 HEADERS = ['id','ipv4','os','mac','start_time','uptime','error']
