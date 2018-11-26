@@ -29,13 +29,8 @@ def import_hardware(row: )
 				ssn: row['Serial Number'],
 			},
 			category: {name: row['Category']},
-			site: {name: row['Site']},
-			department: {name: row['Department']},
-			ip: row['ip'],
-			status: row['Status'],
+			ip_address: row['ip'],
 			asset_tag: row['tag'],
-			technical_contact: {email: row['technical contact']},
-			owner: {email: row['Owner']},
 			custom_fields_values: {
 				custom_fields_value: [
 					{name: 'Insurance', value: row['Insurance']},
@@ -44,10 +39,16 @@ def import_hardware(row: )
 			}
 		}
 	}
+	hardware[:hardware][:owner] = {email: row['Owner']} if row['Owner']
+  hardware[:hardware][:site] =  {name: row['Site']} if row['Site']
+  hardware[:hardware][:department] =  {name: row['Department']} if row['Department']
+  hardware[:hardware][:technical_contact] =  {email: row['technical contact']} if row['technical contact']
 	@samanage.create_hardware(payload: hardware)
-	rescue => e
-		log_to_csv(row: row.to_h.values)
+	rescue Samanage::Error, Samanage::InvalidRequest => e
+		error = "#{e.status_code} - #{e.error}"
+		row['Error'] = error
+		log_to_csv(row: row.values)
 end
 
 
-csv_rows.map{|row| import_hardware(row: row)}
+csv_rows.map{|row| import_hardware(row: row.to_h)}
