@@ -42,10 +42,12 @@ def import_hardware(row: )
 	hardware[:hardware][:owner] = {email: row['Owner']} if row['Owner']
   hardware[:hardware][:site] =  {name: row['Site']} if row['Site']
   hardware[:hardware][:department] =  {name: row['Department']} if row['Department']
-  hardware[:hardware][:technical_contact] =  {email: row['technical contact']} if row['technical contact']
+	hardware[:hardware][:technical_contact] =  {email: row['technical contact']} if row['technical contact']
+	puts "Creating: #{row['Serial Number']}"
 	@samanage.create_hardware(payload: hardware)
 	rescue Samanage::Error, Samanage::InvalidRequest => e
 		error = "#{e.status_code} - #{e.error}"
+		p error
 		row['Error'] = error
 		log_to_csv(row: row.values)
 end
