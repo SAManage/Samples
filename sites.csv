@@ -1,0 +1,3 @@
+name,location,description,time_zone,language,business_record_id
+NY Office,"New York City,NY",HQ ,Eastern Time (US & Canada),en,1
+London Office,"London,UK",UK Office,London,en,1234
