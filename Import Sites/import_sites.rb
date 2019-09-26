@@ -23,6 +23,7 @@ def import_site(row: )
 	site = {
 		site: {
 			name: row['name'],
+			location: row['location'],
 			description: row['description']
 		}
 	}
