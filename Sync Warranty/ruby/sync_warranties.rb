@@ -12,10 +12,10 @@ OUTPUT_HEADERS = csv_rows.headers << 'Error'
 DEFAULT_FILENAME = "Errors-#{input.split('.').first}-#{DateTime.now.strftime("%b-%d-%Y-%l%M")}.csv"
 
 def log_to_csv(message: , filename: DEFAULT_FILENAME, headers: OUTPUT_HEADERS)
-    CSV.open(filename, 'a+', write_headers: true, force_quotes: true) do |csv| 
-      csv << OUTPUT_HEADERS if csv.count.eql? 0
-      csv << message
-    end
+  CSV.open(filename, 'a+', write_headers: true, force_quotes: true) do |csv| 
+    csv << OUTPUT_HEADERS if csv.count.eql? 0
+    csv << message
+  end
 end
 
 

@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+gem "samanage", "~> 2.1"
+
+gem "rubocop", "~> 0.79.0", group: :development
+
+gem "rubocop-performance", "~> 1.5", group: :development
+
+gem "parallel", "~> 1.19"
