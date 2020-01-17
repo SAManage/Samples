@@ -44,9 +44,11 @@ def import_other_asset(row: )
 		}
 	}
 	@samanage.create_other_asset(payload: other_asset)
-	rescue => e
-		log_to_csv(row: row.to_h.values)
+	rescue Samanage::Error, Samanage::InvalidRequest => e
+	  error = "#{e.status_code} - #{e.response}"
+	  row['Error'] = error
+	  log_to_csv(row: row.values)
 end
 
 
-csv_rows.map{|row| import_other_asset(row: row)}
+csv_rows.map{|row| import_other_asset(row: row.to_h)}
