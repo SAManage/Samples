@@ -6,9 +6,9 @@ For example if the username on the hardware record is 'john.doe' it will assign 
 ##### Before you start
 
 1. Install ruby
-2. - Clone this repo and `bundle`
-     or - Download the file `update-hardware-owners-by-username.rb` and type `gem install samanage parallel`
-     Edit the script with your email domain here
+2. Clone this repo and `bundle` or download the file `update-hardware-owners-by-username.rb` and type `gem install samanage parallel`
+
+3. Edit script with your email domain here
 
 ```ruby
   #...
