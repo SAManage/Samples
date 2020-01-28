@@ -29,7 +29,7 @@ def import_site(row:)
     }
   }
   @samanage.create_site(payload: site)
-  rescue => e
+  rescue
     log_to_csv(row: row.to_h.values)
 end
 

@@ -45,9 +45,9 @@ def sync_user(user:)
     @samanage.create_user(payload: user_json)
   end
 
-rescue => e
-  user["error"] = "#{e.status_code}: #{e.response}"
-  log_to_csv(user: user.values)
+  rescue => e
+    user["error"] = "#{e.status_code}: #{e.response}"
+    log_to_csv(user: user.values)
 end
 
 csv_users.map { |user| sync_user(user: user.to_h) }

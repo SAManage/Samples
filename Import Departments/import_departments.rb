@@ -29,7 +29,7 @@ def import_department(row:)
     }
   }
   @samanage.create_department(payload: department)
-  rescue => e
+  rescue
     log_to_csv(row: row.to_h.values)
 end
 
