@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "samanage"
-require "parallel"
 require "csv"
 # require 'ap'
 
@@ -22,7 +21,7 @@ end
 
 
 hardwares = @samanage.hardwares
-Parallel.each(hardwares, in_threads: 4) do |hardware|
+hardwares.each do |hardware|
   hardware_has_username = !hardware["username"].to_s.empty?
   email = hardware_has_username ? "#{hardware['username']}#{@email_domain}" : false
   if is_user?(email)
